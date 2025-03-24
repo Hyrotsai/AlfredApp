@@ -17,6 +17,7 @@ export default function Map() {
 
   const { latitude, longitude } = airport || { latitude: 0, longitude: 0 };
 
+  //INFO Evita que el mapa haga renderizados innecesarios
   useEffect(() => {
     const mapContainer: HTMLElement | null = document.getElementById("map");
 

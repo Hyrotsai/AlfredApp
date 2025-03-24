@@ -36,6 +36,7 @@ export default function Page() {
 
   if (isLoading) return <Loader />;
 
+  //INFO Si la peticion falla me mostrara un componente de recarga
   if (!isLoading && flights.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">

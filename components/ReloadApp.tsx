@@ -11,6 +11,7 @@ export default function ReloadApp() {
   const { apiLocal, setApiLocal, timeApiLocal, setTimeApiLocal } =
     useHistorialFlight();
 
+  //INFO Este funcion va a actualizar RefreshKey para refrescar el app/app.tsx
   function handleRefresh() {
     setRefreshKey();
     setIsLoading();

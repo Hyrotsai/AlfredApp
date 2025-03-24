@@ -21,6 +21,7 @@ export default function SearchBar({ isColumn = true }: { isColumn: boolean }) {
       document.querySelector("input") as HTMLInputElement
     )?.value.toLowerCase();
 
+    // INFO Buscara por iata o ciao code, o que incluyan el texto
     const result = flights.filter(
       (flight: Airport) =>
         flight.iata_code.toLowerCase() === inputValue ||
@@ -28,6 +29,7 @@ export default function SearchBar({ isColumn = true }: { isColumn: boolean }) {
         flight.airport_name.toLowerCase().includes(inputValue),
     );
 
+    // INFO si valor que se busca esta en el historial NO lo va a agregar
     if (result.length > 0 && inputValue !== "") {
       if (historialFlight.includes(inputValue)) return;
       setHistorialFlights(inputValue);
