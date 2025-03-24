@@ -2,9 +2,9 @@ import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Switch } from "@heroui/switch";
 
-import { title } from "./primitives";
+import useFlightStore, { useHistorialFlight } from "../store/zustandStore";
 
-import useFlightStore, { useHistorialFlight } from "@/store/zustandStore";
+import { title } from "./primitives";
 
 export default function ReloadApp() {
   const { setIsLoading, setRefreshKey } = useFlightStore();
@@ -18,7 +18,10 @@ export default function ReloadApp() {
   }
 
   return (
-    <div className="container h-screen flex flex-col items-center m-auto mt-48 ">
+    <div
+      className="container h-screen flex flex-col items-center m-auto mt-48 "
+      data-testid="error"
+    >
       <h1 className={title({ color: "blue" })}>
         {" "}
         El API ha fallado, probablemente se llego al limite del consumo, se

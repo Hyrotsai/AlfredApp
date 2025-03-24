@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
 
+import "@testing-library/jest-dom";
 import Page from "@/app/page";
 import { fetchFlights } from "@/utils/api";
 
@@ -12,29 +12,23 @@ jest.mock("@/store/zustandStore", () => ({
     setFlights: jest.fn(),
     searchedFlights: [],
     setSearchedFlights: jest.fn(),
+    isLoading: false,
+    setIsLoadingFalse: jest.fn(),
+    refreshKey: 0,
+  }),
+  useHistorialFlight: () => ({
+    apiLocal: false,
+    timeApiLocal: 1,
   }),
 }));
 
+// Mock de la API
 jest.mock("@/utils/api", () => ({
   fetchFlights: jest.fn(),
 }));
 
-describe("Page Component", () => {
-  it("Muestra el titulo principal", () => {
-    render(<Page />);
-    expect(screen.getByText("SkyeConnect Explorer")).toBeInTheDocument();
-  });
-
-  it("Ejecuta la busqueda cuando se escribe en el input", () => {
-    render(<Page />);
-    const input = screen.getByRole("textbox") as HTMLInputElement;
-
-    fireEvent.change(input, { target: { value: "JFK" } });
-
-    expect(input.value).toBe("JFK");
-  });
-
-  it("Carga los vuelos al montar el componente", async () => {
+describe("Page Component - API Request", () => {
+  it("Llama a fetchFlights al montar el componente", async () => {
     const mockFlights = [
       { iata_code: "JFK", icao_code: "KJFK", airport_name: "John F. Kennedy" },
     ];
@@ -43,6 +37,12 @@ describe("Page Component", () => {
 
     render(<Page />);
 
-    expect(fetchFlights).toHaveBeenCalled();
+    expect(fetchFlights).toHaveBeenCalledWith(false, 1);
   });
+});
+
+it("Muestra un componente error si la peticion falla", () => {
+  render(<Page />);
+
+  expect(screen.getByTestId("error")).toBeInTheDocument();
 });

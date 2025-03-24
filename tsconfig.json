@@ -28,8 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "store/zustandStore.tsx",
-    "store/zustandStore.ts"
+    "store/zustandStore.tsx"
   ],
   "exclude": ["node_modules"]
 }
