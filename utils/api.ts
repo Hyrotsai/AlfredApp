@@ -18,12 +18,15 @@ export const fetchFlights = async (apiLocal: boolean, timeApiLocal: number) => {
         }
 
         const response = await fetch(API_URL);
-        // const response = await fetch("/data.json");
+
         const { data } = await response.json();
+
+        if (data == undefined) throw new Error("Se acabo la cuota mensual")
 
         return data;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+        alert(error)
 
         return [];
     }
