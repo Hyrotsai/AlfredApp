@@ -36,7 +36,7 @@ export default function PaginationApp() {
           color="primary"
           page={currentPage}
           total={totalPages}
-          onChange={(e: any) => setCurrentPage(e)}
+          onChange={(e: number) => setCurrentPage(e)}
         />
         <Button
           className="hidden md:block"

@@ -1,9 +1,10 @@
 import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
-import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
+import { Airport } from "@/interface/Airport";
 import useFlightStore from "@/store/zustandStore";
 
 export default function Map() {
@@ -12,14 +13,14 @@ export default function Map() {
 
   const id = searchParams.get("id");
 
-  const airport = flights.find((flight: any) => flight.iata_code === id);
+  const airport = flights.find((flight: Airport) => flight.iata_code === id);
 
-  const { latitude, longitude } = airport;
+  const { latitude, longitude } = airport || { latitude: 0, longitude: 0 };
 
   useEffect(() => {
-    const mapContainer: any = document.getElementById("map");
+    const mapContainer: HTMLElement | null = document.getElementById("map");
 
-    if (mapContainer?._leaflet_id) {
+    if ((mapContainer as any)?._leaflet_id) {
       return;
     }
 

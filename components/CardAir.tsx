@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CardAir({ flight }: { flight: any }) {
+import { Airport } from "@/interface/Airport";
+
+export default function CardAir({ flight }: { flight: Airport }) {
   return (
     <Link
       className="w-[100%] xl:w-[100%] motion-safe:animate-slide-in"

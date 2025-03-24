@@ -3,12 +3,14 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import FlightTabs from "@/components/FlightTabs";
 import { title } from "@/components/primitives";
+import { Airport } from "@/interface/Airport";
 import useFlightStore from "@/store/zustandStore";
 
-export default function Page() {
+function FlightPageContent() {
   const { flights } = useFlightStore();
   const searchParams = useSearchParams();
 
@@ -16,14 +18,13 @@ export default function Page() {
 
   if (!id) return <p>Cargando...</p>;
 
-  const airport = flights.find((flight: any) => flight.iata_code === id);
+  const airport = flights.find((flight: Airport) => flight.iata_code === id);
 
   if (!airport)
     return (
       <div className="w-screen h-screen flex flex-col justify-center items-center gap-2">
-        <p className="text-white dark:text-gray-900">Vuelo no encontrado</p>
         <Button>
-          <Link href="/">Regresar</Link>
+          <Link href="/">Reiniciar APP</Link>
         </Button>
       </div>
     );
@@ -42,5 +43,13 @@ export default function Page() {
         <FlightTabs />
       </div>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Cargando...</p>}>
+      <FlightPageContent />
+    </Suspense>
   );
 }

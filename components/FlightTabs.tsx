@@ -2,8 +2,9 @@ import { Tab, Tabs } from "@heroui/tabs";
 import { useSearchParams } from "next/navigation";
 
 import CardDescription from "@/components/CardDescription";
-import Map from "@/components/Map";
+import RenderMap from "@/components/DynamicMap";
 import { useTabSize } from "@/hooks/useTabSize";
+import { Airport } from "@/interface/Airport";
 import useFlightStore from "@/store/zustandStore";
 
 export default function FlightTabs() {
@@ -15,7 +16,9 @@ export default function FlightTabs() {
 
   if (!id) return <p>Cargando...</p>;
 
-  const airport = flights.find((flight: any) => flight.iata_code === id);
+  const airport = flights.find((flight: Airport) => flight.iata_code === id);
+
+  if (!airport) return <p>Aeropuerto no encontrado</p>;
 
   const datosGeneral = {
     "Código IATA": airport.iata_code,
@@ -67,7 +70,7 @@ export default function FlightTabs() {
           icon="MapPoint.svg"
           titulo="Ubicación"
         />
-        <Map />
+        <RenderMap />
       </Tab>
       <Tab key="zone" className="md:h-16" title="Zona horaria">
         <CardDescription

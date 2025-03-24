@@ -1,6 +1,7 @@
+import { BreadcrumbItem, Breadcrumbs } from "@heroui/breadcrumbs";
 import { useState } from "react";
-import { Breadcrumbs, BreadcrumbItem } from "@heroui/breadcrumbs";
 
+import { Airport } from "@/interface/Airport";
 import useFlightStore, { useHistorialFlight } from "@/store/zustandStore";
 
 export default function HistorialFlights() {
@@ -16,7 +17,7 @@ export default function HistorialFlights() {
 
   function searchFlights(value: string) {
     const result = flights.filter(
-      (flight: any) =>
+      (flight: Airport) =>
         flight.iata_code.toLowerCase() === value ||
         flight.icao_code.toLowerCase() === value ||
         flight.airport_name.toLowerCase().includes(value),
@@ -27,7 +28,7 @@ export default function HistorialFlights() {
 
   function handleDelete(indexToDelete: number) {
     const newHistorialFlight = historialFlight.filter(
-      (_: any, index: number) => index !== indexToDelete,
+      (_: unknown, index: number) => index !== indexToDelete,
     );
 
     updateNewHistorialFlight(newHistorialFlight);
@@ -50,7 +51,7 @@ export default function HistorialFlights() {
           separator: "hidden",
         }}
         size="lg"
-        onAction={(key: any) => handlerHistorial(key)}
+        onAction={(key) => handlerHistorial(String(key))}
       >
         {lastFiveFlights.map((data: string, index: number) => (
           <BreadcrumbItem key={data} isCurrent={currentHistorial == data}>

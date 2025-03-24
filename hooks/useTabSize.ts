@@ -15,6 +15,7 @@ export function useTabSize() {
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
+
     }, []);
 
     return tabSize;

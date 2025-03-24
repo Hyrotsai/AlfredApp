@@ -1,12 +1,14 @@
 import Image from "next/image";
 
+import { Airport } from "@/interface/Airport";
+
 export default function CardDescription({
   titulo,
   datos,
   icon = "Info.svg",
 }: {
   titulo: string;
-  datos: any;
+  datos: Record<string, string | number | undefined>;
   icon: string;
 }) {
   const datosArray = Object.keys(datos);
@@ -28,12 +30,13 @@ export default function CardDescription({
           {titulo}
         </p>
 
-        {datosArray.map((dato: any, index: number) => (
+        {datosArray.map((dato, index: number) => (
           <p
             key={datosArray[index]}
             className="text-[16px] md:text-[30px] font-bold dark:text-gray-900"
           >
-            {dato}: <span className="font-normal"> {datos[dato]}</span>
+            {dato}:{" "}
+            <span className="font-normal"> {datos[dato as keyof Airport]}</span>
           </p>
         ))}
       </div>

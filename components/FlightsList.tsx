@@ -1,6 +1,7 @@
 import CardAir from "./CardAir";
 import PaginationApp from "./Pagination";
 
+import { Airport } from "@/interface/Airport";
 import useFlightStore from "@/store/zustandStore";
 import { itemPerPage } from "@/utils/variables";
 
@@ -13,7 +14,7 @@ export default function FlightsList() {
   return (
     <div className="w-screen flex flex-col justify-center items-center">
       <div className="grid grid-cols-1 xl:grid-cols-2 place-items-center gap-3 mt-4 w-[90%] 2xl:w-4/5 h-[500px] xl:h-[750px] overflow-auto scrollbar-hide">
-        {currentFlights.map((flight: any) => (
+        {currentFlights.map((flight: Airport) => (
           <CardAir key={flight.airport_id} flight={flight} />
         ))}
       </div>

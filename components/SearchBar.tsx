@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { title } from "./primitives";
 
 import useFlightStore, { useHistorialFlight } from "@/store/zustandStore";
+import { Airport } from "@/interface/Airport";
 
 export default function SearchBar({ isColumn = true }: { isColumn: boolean }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -21,7 +22,7 @@ export default function SearchBar({ isColumn = true }: { isColumn: boolean }) {
     )?.value.toLowerCase();
 
     const result = flights.filter(
-      (flight: any) =>
+      (flight: Airport) =>
         flight.iata_code.toLowerCase() === inputValue ||
         flight.icao_code.toLowerCase() === inputValue ||
         flight.airport_name.toLowerCase().includes(inputValue),

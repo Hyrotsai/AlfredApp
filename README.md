@@ -1,10 +1,27 @@
-# Next.js & HeroUI Template
+# Alfred App
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+## ✨ Características adicionales
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+- 🎨 **Modo oscuro y claro**
+- 📱 **Diseño responsive**
+- 🎭 **Animaciones suaves**
+- ⚡ **Soporte para TypeScript**
+- 🌍 **Internacionalización (i18n)**
+- 🔄 **Gestión de estado con Zustand** -
+- 🔍 **Historial de busqueda**
+- 📦 **Componentes reutilizables (diseño modular)**
+- 🐯 **Simulacion de llamado del api (Cuando se acaba el uso mensual)**
 
-## Technologies Used
+## Requisitos del Proyecto
+
+| Tecnología   | Versión mínima             |
+| ------------ | -------------------------- |
+| Node.js      | 20.x o superior            |
+| npm / pnpm   | Última versión recomendada |
+| Next.js      | 14.x                       |
+| Tailwind CSS | 3.x                        |
+
+## Technologies usadas
 
 - [Next.js 14](https://nextjs.org/docs/getting-started)
 - [HeroUI v2](https://heroui.com/)
@@ -14,40 +31,30 @@ This is a template for creating applications using Next.js 14 (app directory) an
 - [Framer Motion](https://www.framer.com/motion/)
 - [next-themes](https://github.com/pacocoursey/next-themes)
 
-## How to Use
+## Como correr el proyecto
 
-### Use the template with create-next-app
+### Instalar dependencias
 
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
-
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+Es necesario instalar dependencias del proyecto:
 
 ```bash
 npm install
 ```
 
-### Run the development server
+### Correr el proyecto de manera local
 
 ```bash
 npm run dev
 ```
 
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+### Ejecutarlo en el navegador
 
 ```bash
-public-hoist-pattern[]=*@heroui/*
+localhost:3000
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## 📌 Hecho por
 
-## License
+---
 
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+_Hecho con ❤️ por [Luis Rodríguez](https://www.linkedin.com/in/luisrodriguez55/)_

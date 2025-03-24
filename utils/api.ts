@@ -2,23 +2,28 @@
 const API_KEY = "181082e8d55056fe86e7854015ee14bf";
 const API_URL = `http://api.aviationstack.com/v1/airports?access_key=${API_KEY}`;
 
-export const fetchFlights = async () => {
+export const fetchFlights = async (apiLocal: boolean, timeApiLocal: number) => {
     try {
-        console.log("Comenzo la promesa")
 
-        // await new Promise((resolve) => {
-        //     setTimeout(() => {
-        //         resolve("Tiempo completado: 3 segundos");
-        //     }, 3000);
-        // });
-        // throw new Error("Error en la llamada")
-        const response = await fetch("/data.json");
-        const data = await response.json();
-        console.log("Respuesta: ", data)
+        if (apiLocal) {
+            await new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve('');
+                }, timeApiLocal * 1000);
+            });
+            const response = await fetch("/data.json");
+            const data = await response.json();
+
+            return data
+        }
+
+        const response = await fetch(API_URL);
+        // const response = await fetch("/data.json");
+        const { data } = await response.json();
 
         return data;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        console.error("Error al obtener los vuelos:", error);
 
         return [];
     }
